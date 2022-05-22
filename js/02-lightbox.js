@@ -1,0 +1,34 @@
+import { galleryItems } from './gallery-items.js';
+// Change code below this line
+
+for (const item of galleryItems) {
+  const gallery = document.querySelector(".gallery");
+
+  //створюємо item
+  const galleryItem = document.createElement("a");
+  galleryItem.className = "gallery__item";
+  galleryItem.setAttribute("href", item.original);
+  gallery.append(galleryItem);
+
+  //створюємо image
+  const galleryImage = document.createElement("img");
+  galleryImage.className = "gallery__image";
+  galleryImage.setAttribute("src", item.preview);
+  galleryImage.setAttribute("alt", item.description);
+  galleryItem.append(galleryImage);
+}
+
+//preventDefault
+const galleryItem = document.querySelectorAll(".gallery__item");
+for (const link of galleryItem) {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+  });
+}
+
+let lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
+
+// console.log(galleryItems);
